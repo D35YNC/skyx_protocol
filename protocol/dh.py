@@ -5,7 +5,7 @@ import Crypto.Random
 
 
 class DiffieHellman(object):
-    """ MY CUSTOM DIFFIE HELLMAN CLASS. There are many such classes, but this one is mine."""
+    """MY CUSTOM DIFFIE HELLMAN CLASS. There are many such classes, but this one is mine."""
 
     def __init__(self, p: int, g: int):
         self.p = p
@@ -28,7 +28,7 @@ class DiffieHellman(object):
         return False
 
     def generate_session_key(self, pub_key: int) -> bytes:
-        """Return shared key for exchange users"""
+        """Returns a shared key for users"""
         if self.check_public_key(pub_key):
             shared_key = pow(pub_key, self.__private_key, self.p)  # (((g^a)^b)^...^x)^me mod p
             return hashlib.sha3_256(str(shared_key).encode()).digest()
